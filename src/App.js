@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {HashRouter as Router, Link} from 'react-router-dom'
+import styled from "styled-components";
+import Navbar from "./components/Navbar";
+import PopularMovies from "./components/PopularMovies";
+import Search from "./components/Search";
+import Pages from "./pages/Pages";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MovieApp>
+      <Router>
+        <Navbar/>
+        <Pages/>
+      </Router>
+    </MovieApp>
   );
 }
+
+const MovieApp = styled.div`
+  background-color: #101010;
+  color: #fff;
+  padding : 0 4rem;
+  @media only screen and (max-width: 720px){
+    padding : 0 1rem;
+  }
+`
 
 export default App;
