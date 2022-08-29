@@ -1,6 +1,7 @@
 import React from "react";
 import {HashRouter as Router, Link} from 'react-router-dom'
 import styled from "styled-components";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import PopularMovies from "./components/PopularMovies";
 import Search from "./components/Search";
@@ -12,6 +13,7 @@ function App() {
       <Router>
         <Navbar/>
         <Pages/>
+        <Footer/>
       </Router>
     </MovieApp>
   );

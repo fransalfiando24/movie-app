@@ -40,7 +40,6 @@ function Searched() {
       {searched.map((movie, index) => {
         return <MovieCard key={index} {...movie} />
       })}
-      {/* <p>{params.search}</p> */}
     </SearchedMoviesComponent>
   )
 }
