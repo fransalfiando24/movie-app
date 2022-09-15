@@ -14,13 +14,6 @@ const VideoList = ({ movieId }) => {
   const getMovieVideo = async () => {
     const api = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
     const data = await api.json();
-    // data.results.map((item,i) => {
-    //   if(item.type == "Trailer"){
-    //     setVideos(item);
-    //   }
-    //   return;
-    // })
-
     setVideos(data.results);
   }
 
@@ -48,9 +41,6 @@ const VideoList = ({ movieId }) => {
 
 const VideoListComponent = styled.div`
   position: relative;
-  /* top: 100%;
-  left: 0;
-  transform: translate(0,-100%); */
   padding: 2rem 4rem;
   display: flex;
   flex-direction: column;

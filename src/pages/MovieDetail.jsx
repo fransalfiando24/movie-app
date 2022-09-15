@@ -117,7 +117,6 @@ const MovieDetailComponent = styled.div`
     position: relative;
     background: #fff;
     display: flex;
-    /* height: 100%; */
     gap: 2rem;
     justify-content: center;
     padding: 10rem 4rem 2rem 4rem;
@@ -202,11 +201,6 @@ const MovieDetailComponent = styled.div`
         }
       }
   }
-    /* .movie-cast-list{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }     */
   }
 
   @media only screen and (max-width: 960px){
