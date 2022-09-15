@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Loader from '../components/utils/Loader';
+import VideoList from '../components/VideoList';
 
 function MovieDetail() {
   const [movieDetail, setMovieDetail] = useState([]);
@@ -75,6 +76,7 @@ function MovieDetail() {
           </div>
         </div>
       </div>
+      <VideoList movieId={params.id}/>
     </MovieDetailComponent>
   )
 }
@@ -112,11 +114,13 @@ const MovieDetailComponent = styled.div`
   }
 
   .movie-container{
+    position: relative;
+    background: #fff;
     display: flex;
-    height: 100%;
+    /* height: 100%; */
     gap: 2rem;
     justify-content: center;
-    padding: 10rem 4rem 0 4rem;
+    padding: 10rem 4rem 2rem 4rem;
     background-color: #10101066;
     backdrop-filter: blur(1px);
     .movie-poster{
@@ -126,6 +130,7 @@ const MovieDetailComponent = styled.div`
     }
 
     .movie-detail{
+      height: 100%;
       .movie-title{
         font-size: 4rem;
         margin-bottom: -0.6rem;
@@ -148,18 +153,26 @@ const MovieDetailComponent = styled.div`
           margin-right: 5px;
         }
       }
-      .movie-cast-list{
-        display: flex;
-        gap: 1rem;
-        .movie-cast-item{
-          text-align: center;
-          .movie-cast-img{
-            border-radius: 8px;
-            width: 120px;
-            height: 150px;
-            transition: all .3s;
-            :hover{
-              transform: scale(1.02);
+      .movie-cast{
+        position: relative;
+        .movie-cast-list{
+          position: relative;
+          height: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 1rem;
+          .movie-cast-item{
+            text-align: center;
+            .movie-cast-img{
+              border-radius: 8px;
+              width: 120px;
+              height: 150px;
+              transition: all .3s;
+              box-shadow: 2px 2px 20px #000;
+              :hover{
+                transform: scale(1.02);
+              }
             }
           }
         }
@@ -168,7 +181,7 @@ const MovieDetailComponent = styled.div`
   }
   @media only screen and (max-width: 720px){
     .movie-container{
-      padding: 10rem 1rem 0 1rem;
+      padding: 10rem 1rem 1rem 1rem;
       .movie-detail{
         .movie-title{
           font-size: 3.3rem;
@@ -189,11 +202,11 @@ const MovieDetailComponent = styled.div`
         }
       }
   }
-    .movie-cast-list{
+    /* .movie-cast-list{
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-    }    
+    }     */
   }
 
   @media only screen and (max-width: 960px){
