@@ -28,7 +28,7 @@ function NowPlayingMovie() {
   }
   
   return (
-    <PopularMoviesComponent>
+    <NowPlayingMoviesComponent>
         <Splide
           options = {{
             perPage: 1,
@@ -64,20 +64,13 @@ function NowPlayingMovie() {
             )
           })}
         </Splide>
-    </PopularMoviesComponent>
+    </NowPlayingMoviesComponent>
   )
 }
 
-const PopularMoviesComponent = styled.div`
+const NowPlayingMoviesComponent = styled.div`
   h2{
     color: #f3da35;
-  }
-
-  .movies-list{
-    display: flex;
-    flex-wrap: wrap;
-    gap: .8rem; 
-    justify-content: center;
   }
 `
 

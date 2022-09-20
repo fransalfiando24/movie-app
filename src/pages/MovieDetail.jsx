@@ -5,11 +5,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Loader from '../components/utils/Loader';
 import VideoList from '../components/VideoList';
+import Footer from '../components/Footer';
+import NowPlayingMovie from '../components/NowPlayingMovie';
+import RecommendationMovies from '../components/RecommendationMovies';
 
 function MovieDetail() {
   const [movieDetail, setMovieDetail] = useState([]);
   const [movieGenres, setMovieGenres] = useState([]);
   const [movieCast, setMovieCast] = useState([]);
+  const [movieRelease, setMovieRelease] = useState([]);
   const [loading, setLoading] = useState(true);
 
   let params = useParams();
@@ -26,6 +30,7 @@ function MovieDetail() {
 
     setMovieDetail(data);
     setMovieGenres(data.genres);
+    setMovieRelease(data.release_date.split('-'));
     setLoading(false);
   }
 
@@ -37,6 +42,11 @@ function MovieDetail() {
 
   const moviePoster = `https://image.tmdb.org/t/p/w500${movieDetail.poster_path || movieDetail.backdrop_path}`
   const movieBackground = `https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`
+  const monthNames = ["January", "February", "March",  "April", "May", "June",  "July", "August", "September", "October", "November", "December"];
+  const movieYear = Number(movieRelease[0]);
+  const movieMonth = monthNames[Number(movieRelease[1]-1)];
+  const movieDay = Number(movieRelease[2]);
+  
   
   if (loading) return <Loader/>
   return (
@@ -55,6 +65,8 @@ function MovieDetail() {
               )
             })}
           </div>
+          <p className='movie-release'>Release Date : {movieDay} {movieMonth} {movieYear}</p>
+          {movieDetail.tagline.length > 0 && <p className='movie-overview'><i>"{movieDetail.tagline}"</i></p>}
           <p className='movie-overview'>{movieDetail.overview}</p>
           <p className='movie-rating'>
              <span><FontAwesomeIcon icon={faStar} style={{color: '#f3da35'}}/></span>
@@ -77,6 +89,8 @@ function MovieDetail() {
         </div>
       </div>
       <VideoList movieId={params.id}/>
+      <RecommendationMovies movieId={params.id}/>
+      <Footer/>
     </MovieDetailComponent>
   )
 }
@@ -130,6 +144,7 @@ const MovieDetailComponent = styled.div`
 
     .movie-detail{
       height: 100%;
+      margin-top: -2rem;
       .movie-title{
         font-size: 4rem;
         margin-bottom: -0.6rem;
@@ -145,6 +160,11 @@ const MovieDetailComponent = styled.div`
           border: 1px solid #f3da35;
           margin: 0;
         }
+      }
+      .movie-release{
+        font-weight: 700;
+        color: #f3da35;
+        margin: -5px 0;
       }
       .movie-rating{
         font-size: 1.2rem;
@@ -183,11 +203,11 @@ const MovieDetailComponent = styled.div`
       padding: 10rem 1rem 1rem 1rem;
       .movie-detail{
         .movie-title{
-          font-size: 3.3rem;
+          font-size: 3rem;
           margin-bottom: 1.3rem;
         }
-        .movie-overview{
-          font-size: 1.4rem;
+        .movie-overview, .movie-release{
+          font-size: 1.1rem;
         }
         .movie-rating{
           font-size: 2rem;
@@ -196,7 +216,7 @@ const MovieDetailComponent = styled.div`
           gap: .5rem;
           align-items: center;
           p{
-            font-size: 1.1rem;
+            font-size: 1rem;
           }
         }
       }
